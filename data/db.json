@@ -1,0 +1,65 @@
+[
+  {
+    "id": "995f012f-9b77-44bb-b422-f8f40a6f4955",
+    "title": "Expdte sin permiso de acceso",
+    "category": "Software/TI",
+    "description": "Revisar que al querer ingresar a un expdte en el cual no tengo permiso me muestra un error 403",
+    "urgency": "Alta",
+    "status": "En Revisión",
+    "createdAt": "2026-05-10T16:02:15.968Z"
+  },
+  {
+    "id": "f7ca1d21-542b-46cc-9119-8178c7b908f3",
+    "title": "Compulsa vencidas",
+    "category": "Software/TI",
+    "description": "Cuando una compulsa se venció según los días establecidos (60), se siguen mostrando en mis expedientes en la bandeja de Abogados. En caso de que la compulsa este vencida se debe ocultar el expte dentro del apartado \"Mis expedientes\"",
+    "urgency": "Media",
+    "status": "Completado",
+    "createdAt": "2026-05-10T17:12:40.042Z"
+  },
+  {
+    "id": "b861188c-152b-4e22-8afe-c3a891a07a1c",
+    "title": "PRUEBA 1",
+    "category": "Equipamiento",
+    "description": "PRUEBA 1",
+    "urgency": "Baja",
+    "status": "Pendiente",
+    "createdAt": "2026-05-10T17:28:48.959Z"
+  },
+  {
+    "id": "1f8b2c93-29a9-47ca-b6c7-f6f1ec54e8a2",
+    "title": "PRUEBA 2",
+    "category": "Infraestructura",
+    "description": "PRUEBA 2",
+    "urgency": "Media",
+    "status": "Pendiente",
+    "createdAt": "2026-05-10T17:29:07.359Z"
+  },
+  {
+    "id": "0c9fcdc8-1d89-4262-bb35-191d31829d44",
+    "title": "PRUEBA 3",
+    "category": "Bienestar",
+    "description": "PRUEBA 3",
+    "urgency": "Alta",
+    "status": "Pendiente",
+    "createdAt": "2026-05-10T17:31:53.395Z"
+  },
+  {
+    "id": "2f51d564-ba30-4367-afeb-c760b7df021f",
+    "title": "PRUEBA 4",
+    "category": "Otros",
+    "description": "PRUEBA 4",
+    "urgency": "Baja",
+    "status": "Pendiente",
+    "createdAt": "2026-05-10T17:35:12.500Z"
+  },
+  {
+    "id": "ad3ff7e5-b44f-40d7-bf61-5c2dcb944001",
+    "title": "MONITORS CURVOS 27\"",
+    "category": "Equipamiento",
+    "description": "4 MONITORES CURVOS DE 27\" PARA CONTINUAR CON LA POGRAMACIÓN DE SILAMI",
+    "urgency": "Alta",
+    "status": "Pendiente",
+    "createdAt": "2026-05-10T17:36:18.256Z"
+  }
+]
