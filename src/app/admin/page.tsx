@@ -101,6 +101,11 @@ export default function AdminDashboard() {
 
   // ─── Export CSV ───
   const exportCSV = () => {
+    if (filteredTickets.length === 0) {
+      alert("No hay tickets para exportar");
+      return;
+    }
+
     const headers = ["ID", "Título", "Categoría", "Descripción", "Urgencia", "Estado", "Fecha"];
     const rows = filteredTickets.map((t) => [
       t.id,
@@ -119,7 +124,9 @@ export default function AdminDashboard() {
     const link = document.createElement("a");
     link.href = url;
     link.download = `tickets_${new Date().toISOString().slice(0, 10)}.csv`;
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
     URL.revokeObjectURL(url);
   };
 
