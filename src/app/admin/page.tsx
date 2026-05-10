@@ -125,10 +125,11 @@ export default function AdminDashboard() {
       return;
     }
 
-    const headers = ["ID", "Título", "Categoría", "Descripción", "Urgencia", "Estado", "Fecha"];
+    const headers = ["ID", "Título", "Solicitante", "Categoría", "Descripción", "Urgencia", "Estado", "Fecha"];
     const rows = filteredTickets.map((t) => [
       t.id,
       `"${t.title.replace(/"/g, '""')}"`,
+      t.requester || "",
       t.category,
       `"${t.description.replace(/"/g, '""')}"`,
       t.urgency,
@@ -409,17 +410,18 @@ export default function AdminDashboard() {
             <table className="w-full text-left border-collapse min-w-[700px]">
               <thead>
                 <tr className="bg-slate-50 dark:bg-zinc-950/50 border-b border-slate-200 dark:border-zinc-800 text-xs font-semibold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">
-                  <th className="p-4 pl-6 w-[35%]">Ticket</th>
-                  <th className="p-4 w-[15%]">Categoría</th>
-                  <th className="p-4 w-[12%]">Urgencia</th>
-                  <th className="p-4 w-[13%]">Fecha</th>
-                  <th className="p-4 w-[25%] pr-6">Estado</th>
+                  <th className="p-4 pl-6 w-[28%]">Ticket</th>
+                  <th className="p-4 w-[12%]">Solicitante</th>
+                  <th className="p-4 w-[12%]">Categoría</th>
+                  <th className="p-4 w-[10%]">Urgencia</th>
+                  <th className="p-4 w-[10%]">Fecha</th>
+                  <th className="p-4 w-[23%] pr-6">Estado</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 dark:divide-zinc-800/80">
                 {filteredTickets.length === 0 ? (
                   <tr>
-                    <td colSpan={5} className="p-16 text-center text-slate-500 dark:text-zinc-500">
+                    <td colSpan={6} className="p-16 text-center text-slate-500 dark:text-zinc-500">
                       <div className="flex flex-col items-center justify-center">
                         <Archive className="w-12 h-12 mb-4 text-slate-300 dark:text-zinc-700" />
                         <p className="text-sm font-medium">
@@ -441,6 +443,9 @@ export default function AdminDashboard() {
                       <td className="p-4 pl-6 align-top">
                         <div className="font-semibold text-slate-900 dark:text-zinc-100">{t.title}</div>
                         <div className="text-sm text-slate-500 dark:text-zinc-400 mt-1.5 leading-relaxed">{t.description}</div>
+                      </td>
+                      <td className="p-4 align-top text-sm font-medium text-slate-700 dark:text-zinc-300">
+                        {t.requester || "-"}
                       </td>
                       <td className="p-4 align-top">
                         <span className="inline-flex bg-slate-100 dark:bg-zinc-800 text-slate-700 dark:text-zinc-300 px-2.5 py-1 rounded-md text-xs font-medium border border-slate-200 dark:border-zinc-700">

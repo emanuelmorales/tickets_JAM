@@ -61,5 +61,15 @@
     "urgency": "Alta",
     "status": "Pendiente",
     "createdAt": "2026-05-10T17:36:18.256Z"
+  },
+  {
+    "id": "c9a85c83-d656-4f9c-a69f-545778c98126",
+    "title": "Sillas Gammer",
+    "category": "Equipamiento",
+    "description": "2 Sillas Gammer para sistemas",
+    "urgency": "Media",
+    "requester": "Emanuel Morales",
+    "status": "Pendiente",
+    "createdAt": "2026-05-10T21:01:48.226Z"
   }
 ]
