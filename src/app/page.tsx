@@ -56,6 +56,7 @@ export default function Home() {
       category: formData.get("category"),
       description: formData.get("description"),
       urgency: formData.get("urgency"),
+      requester: formData.get("requester"),
     };
 
     try {
@@ -237,6 +238,20 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <label htmlFor="requester" className="text-sm font-semibold text-slate-700 dark:text-zinc-300">
+                  Tu Nombre
+                </label>
+                <input
+                  id="requester"
+                  name="requester"
+                  type="text"
+                  required
+                  placeholder="Tu nombre completo"
+                  className="w-full bg-slate-50 dark:bg-zinc-950 border border-slate-300 dark:border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-slate-900 dark:text-zinc-100 placeholder:text-slate-400 dark:placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all"
+                />
               </div>
 
               <div className="space-y-1.5">

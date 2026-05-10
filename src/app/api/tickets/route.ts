@@ -32,6 +32,7 @@ export async function POST(req: Request) {
       category: body.category,
       description: body.description,
       urgency: body.urgency,
+      requester: body.requester,
       status: "Pendiente",
       createdAt: new Date().toISOString(),
     };

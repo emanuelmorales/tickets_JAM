@@ -15,6 +15,7 @@ interface Ticket {
   urgency: string;
   status: string;
   createdAt: string;
+  requester?: string;
 }
 
 export default function AdminDashboard() {
@@ -28,6 +29,8 @@ export default function AdminDashboard() {
   const [filterStatus, setFilterStatus] = useState("Todos");
   const [filterUrgency, setFilterUrgency] = useState("Todos");
   const [filterCategory, setFilterCategory] = useState("Todos");
+  const [pageSize, setPageSize] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const tableRef = useRef<HTMLDivElement>(null);
 
@@ -90,6 +93,20 @@ export default function AdminDashboard() {
     });
   }, [tickets, searchQuery, filterStatus, filterUrgency, filterCategory]);
 
+  const totalPages = Math.ceil(filteredTickets.length / pageSize);
+  const paginatedTickets = useMemo(() => {
+    const start = (currentPage - 1) * pageSize;
+    return filteredTickets.slice(start, start + pageSize);
+  }, [filteredTickets, currentPage, pageSize]);
+
+  useEffect(() => {
+    if (currentPage > totalPages && totalPages > 0) {
+      setCurrentPage(totalPages);
+    } else if (filteredTickets.length > 0 && (currentPage - 1) * pageSize >= filteredTickets.length) {
+      setCurrentPage(1);
+    }
+  }, [totalPages, currentPage, pageSize, filteredTickets.length]);
+
   const hasActiveFilters = filterStatus !== "Todos" || filterUrgency !== "Todos" || filterCategory !== "Todos" || searchQuery !== "";
 
   const clearFilters = () => {
@@ -97,6 +114,8 @@ export default function AdminDashboard() {
     setFilterStatus("Todos");
     setFilterUrgency("Todos");
     setFilterCategory("Todos");
+    setPageSize(10);
+    setCurrentPage(1);
   };
 
   // ─── Export CSV ───
@@ -365,8 +384,22 @@ export default function AdminDashboard() {
           {/* Results count */}
           <div className="text-xs text-slate-500 dark:text-zinc-500 flex items-center justify-between">
             <span>
-              Mostrando <strong className="text-slate-700 dark:text-zinc-300">{filteredTickets.length}</strong> de <strong className="text-slate-700 dark:text-zinc-300">{tickets.length}</strong> ticket(s)
+              Mostrando <strong className="text-slate-700 dark:text-zinc-300">{(currentPage - 1) * pageSize + 1}</strong> - <strong className="text-slate-700 dark:text-zinc-300">{Math.min(currentPage * pageSize, filteredTickets.length)}</strong> de <strong className="text-slate-700 dark:text-zinc-300">{filteredTickets.length}</strong> ticket(s)
             </span>
+            <div className="flex items-center gap-2">
+              <span>Ver:</span>
+              <select
+                value={pageSize}
+                onChange={(e) => { setPageSize(Number(e.target.value)); setCurrentPage(1); }}
+                className="bg-slate-50 dark:bg-zinc-800 border border-slate-300 dark:border-zinc-700 text-slate-700 dark:text-zinc-200 text-xs font-medium rounded-lg px-2 py-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500/50 cursor-pointer"
+              >
+                <option value={5}>5</option>
+                <option value={10}>10</option>
+                <option value={25}>25</option>
+                <option value={50}>50</option>
+                <option value={999999}>Todos</option>
+              </select>
+            </div>
           </div>
         </div>
 
@@ -403,7 +436,7 @@ export default function AdminDashboard() {
                     </td>
                   </tr>
                 ) : (
-                  filteredTickets.map((t) => (
+                  paginatedTickets.map((t) => (
                     <tr key={t.id} className={`${getRowBg(t.status)} transition-colors group`}>
                       <td className="p-4 pl-6 align-top">
                         <div className="font-semibold text-slate-900 dark:text-zinc-100">{t.title}</div>
@@ -447,6 +480,31 @@ export default function AdminDashboard() {
               </tbody>
             </table>
           </div>
+          
+          {/* Pagination */}
+          {filteredTickets.length > 0 && totalPages > 1 && (
+            <div className="flex items-center justify-between px-4 py-3 bg-slate-50 dark:bg-zinc-950/50 border-t border-slate-200 dark:border-zinc-800">
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                  disabled={currentPage === 1}
+                  className="px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-zinc-400 bg-white dark:bg-zinc-800 border border-slate-300 dark:border-zinc-700 rounded-lg hover:bg-slate-100 dark:hover:bg-zinc-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                >
+                  Anterior
+                </button>
+                <span className="text-sm text-slate-500 dark:text-zinc-400">
+                  Página <strong className="text-slate-700 dark:text-zinc-200">{currentPage}</strong> de <strong className="text-slate-700 dark:text-zinc-200">{totalPages}</strong>
+                </span>
+                <button
+                  onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                  disabled={currentPage === totalPages}
+                  className="px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-zinc-400 bg-white dark:bg-zinc-800 border border-slate-300 dark:border-zinc-700 rounded-lg hover:bg-slate-100 dark:hover:bg-zinc-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                >
+                  Siguiente
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
