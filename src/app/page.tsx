@@ -112,6 +112,15 @@ export default function Home() {
     }
   };
 
+  const getCardBg = (status: string) => {
+    switch (status) {
+      case "Completado": return "bg-emerald-50/60 border-emerald-200 dark:bg-emerald-500/10 dark:border-emerald-500/30 hover:bg-emerald-100/70 dark:hover:bg-emerald-500/15";
+      case "En Revisión": return "bg-blue-50/60 border-blue-200 dark:bg-blue-500/10 dark:border-blue-500/30 hover:bg-blue-100/70 dark:hover:bg-blue-500/15";
+      case "Pendiente": return "bg-slate-50/60 border-slate-200 dark:bg-zinc-800/30 dark:border-zinc-800 hover:bg-slate-100/70 dark:hover:bg-zinc-800/50";
+      default: return "bg-slate-50/60 border-slate-200 dark:bg-zinc-800/30 dark:border-zinc-800 hover:bg-slate-100/70 dark:hover:bg-zinc-800/50";
+    }
+  };
+
   return (
     <div className="flex min-h-screen bg-slate-50 dark:bg-zinc-950">
       {/* Left - Company Image (narrower) */}
@@ -294,6 +303,46 @@ export default function Home() {
               </button>
             )}
           </div>
+
+          {/* Color Legend */}
+          <div className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-sm rounded-xl border border-slate-200 dark:border-zinc-800 p-3 space-y-2.5">
+            {/* Status legend - colored cards */}
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-[10px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-widest w-16 flex-shrink-0">Estado</span>
+              <div className="flex items-center gap-1.5 flex-wrap">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-slate-50/80 border border-slate-200 text-slate-600 dark:bg-zinc-800/50 dark:border-zinc-700 dark:text-zinc-400">
+                  <Clock className="w-3 h-3" />
+                  Pendiente
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-blue-50/80 border border-blue-200 text-blue-700 dark:bg-blue-500/10 dark:border-blue-500/30 dark:text-blue-400">
+                  <Eye className="w-3 h-3" />
+                  En Revisión
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-emerald-50/80 border border-emerald-200 text-emerald-700 dark:bg-emerald-500/10 dark:border-emerald-500/30 dark:text-emerald-400">
+                  <CheckCircle2 className="w-3 h-3" />
+                  Completado
+                </span>
+              </div>
+            </div>
+            {/* Urgency legend - colored dots */}
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-[10px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-widest w-16 flex-shrink-0">Urgencia</span>
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-sm shadow-emerald-500/30"></span>
+                  <span className="text-[11px] font-medium text-slate-600 dark:text-zinc-400">Baja</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500 shadow-sm shadow-amber-500/30"></span>
+                  <span className="text-[11px] font-medium text-slate-600 dark:text-zinc-400">Media</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-red-500 shadow-sm shadow-red-500/30"></span>
+                  <span className="text-[11px] font-medium text-slate-600 dark:text-zinc-400">Alta</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="flex-1 overflow-y-auto px-5 pb-5 space-y-2.5">
@@ -313,10 +362,10 @@ export default function Home() {
               <button
                 key={t.id}
                 onClick={() => setSelectedTicket(selectedTicket?.id === t.id ? null : t)}
-                className={`w-full text-left bg-white dark:bg-zinc-900 rounded-xl border transition-all duration-200
+                className={`w-full text-left rounded-xl border transition-all duration-200
                   ${selectedTicket?.id === t.id
-                    ? "border-blue-300 dark:border-blue-500/40 shadow-md ring-1 ring-blue-200 dark:ring-blue-500/20"
-                    : "border-slate-200 dark:border-zinc-800 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-zinc-700"
+                    ? `${getCardBg(t.status)} ring-1 ring-blue-200 dark:ring-blue-500/20 shadow-md !border-blue-300 dark:!border-blue-500/40`
+                    : `${getCardBg(t.status)} shadow-sm hover:shadow-md`
                   }`}
               >
                 <div className="p-3.5">
