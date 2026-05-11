@@ -5,6 +5,7 @@
     "category": "Software/TI",
     "description": "Revisar que al querer ingresar a un expdte en el cual no tengo permiso me muestra un error 403",
     "urgency": "Alta",
+    "requester": "Emanuel Morales",
     "status": "En Revisión",
     "createdAt": "2026-05-10T16:02:15.968Z"
   },
@@ -14,6 +15,7 @@
     "category": "Software/TI",
     "description": "Cuando una compulsa se venció según los días establecidos (60), se siguen mostrando en mis expedientes en la bandeja de Abogados. En caso de que la compulsa este vencida se debe ocultar el expte dentro del apartado \"Mis expedientes\"",
     "urgency": "Media",
+    "requester": "Emanuel Morales",
     "status": "Completado",
     "createdAt": "2026-05-10T17:12:40.042Z"
   },
@@ -23,6 +25,7 @@
     "category": "Equipamiento",
     "description": "PRUEBA 1",
     "urgency": "Baja",
+    "requester": "Emanuel Morales",
     "status": "Pendiente",
     "createdAt": "2026-05-10T17:28:48.959Z"
   },
@@ -32,6 +35,7 @@
     "category": "Infraestructura",
     "description": "PRUEBA 2",
     "urgency": "Media",
+    "requester": "Emanuel Morales",
     "status": "Pendiente",
     "createdAt": "2026-05-10T17:29:07.359Z"
   },
@@ -41,6 +45,7 @@
     "category": "Bienestar",
     "description": "PRUEBA 3",
     "urgency": "Alta",
+    "requester": "Emanuel Morales",
     "status": "Pendiente",
     "createdAt": "2026-05-10T17:31:53.395Z"
   },
@@ -50,6 +55,7 @@
     "category": "Otros",
     "description": "PRUEBA 4",
     "urgency": "Baja",
+    "requester": "Emanuel Morales",
     "status": "Pendiente",
     "createdAt": "2026-05-10T17:35:12.500Z"
   },
@@ -59,6 +65,7 @@
     "category": "Equipamiento",
     "description": "4 MONITORES CURVOS DE 27\" PARA CONTINUAR CON LA POGRAMACIÓN DE SILAMI",
     "urgency": "Alta",
+    "requester": "Emanuel Morales",
     "status": "Pendiente",
     "createdAt": "2026-05-10T17:36:18.256Z"
   },
